@@ -3,14 +3,13 @@ package Model.DataStructures;
 import Model.Exceptions.InvalidIndexException;
 import Model.Exceptions.ListException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-public class ADTList<E> implements IADTList<E> {
+public class ToyList<E> implements IADTList<E> {
     private List<E> list;
 
-    public ADTList() {
+    public ToyList() {
         list = new Vector<E>();
     }
 
@@ -64,7 +63,7 @@ public class ADTList<E> implements IADTList<E> {
 
     @Override
     public IADTList<E> deepCopy() {
-        IADTList<E> new_list = new ADTList<E>();
+        IADTList<E> new_list = new ToyList<E>();
         for (int i = 0; i < list.size(); ++i)
             new_list.add(list.get(i));
         return new_list;

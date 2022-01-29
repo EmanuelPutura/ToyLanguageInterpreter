@@ -2,7 +2,7 @@
 Program ID: 15
 Execution Stack:
 Ref(int) v
-(new(v, 20); Ref(Ref(int)) a; new(a, v); new(v, 30); new(a, v); print(readHeap(readHeap(a))))
+(new(v, 20); Ref(Ref(int)) a; new(a, v); new(v, 30); new(a, v); print(readHeap(readHeap(a))); print(Program no. 15 finished!))
 Symbols Table:
 
 Out List:
@@ -15,7 +15,7 @@ Heap Table:
 -------------------------
 Program ID: 15
 Execution Stack:
-(new(v, 20); Ref(Ref(int)) a; new(a, v); new(v, 30); new(a, v); print(readHeap(readHeap(a))))
+(new(v, 20); Ref(Ref(int)) a; new(a, v); new(v, 30); new(a, v); print(readHeap(readHeap(a))); print(Program no. 15 finished!))
 Symbols Table:
 v --> (0, int)
 Out List:
@@ -29,7 +29,7 @@ Heap Table:
 Program ID: 15
 Execution Stack:
 new(v, 20)
-(Ref(Ref(int)) a; new(a, v); new(v, 30); new(a, v); print(readHeap(readHeap(a))))
+(Ref(Ref(int)) a; new(a, v); new(v, 30); new(a, v); print(readHeap(readHeap(a))); print(Program no. 15 finished!))
 Symbols Table:
 v --> (0, int)
 Out List:
@@ -42,7 +42,7 @@ Heap Table:
 -------------------------
 Program ID: 15
 Execution Stack:
-(Ref(Ref(int)) a; new(a, v); new(v, 30); new(a, v); print(readHeap(readHeap(a))))
+(Ref(Ref(int)) a; new(a, v); new(v, 30); new(a, v); print(readHeap(readHeap(a))); print(Program no. 15 finished!))
 Symbols Table:
 v --> (1, int)
 Out List:
@@ -56,7 +56,7 @@ Heap Table:
 Program ID: 15
 Execution Stack:
 Ref(Ref(int)) a
-(new(a, v); new(v, 30); new(a, v); print(readHeap(readHeap(a))))
+(new(a, v); new(v, 30); new(a, v); print(readHeap(readHeap(a))); print(Program no. 15 finished!))
 Symbols Table:
 v --> (1, int)
 Out List:
@@ -69,7 +69,7 @@ Heap Table:
 -------------------------
 Program ID: 15
 Execution Stack:
-(new(a, v); new(v, 30); new(a, v); print(readHeap(readHeap(a))))
+(new(a, v); new(v, 30); new(a, v); print(readHeap(readHeap(a))); print(Program no. 15 finished!))
 Symbols Table:
 a --> (0, Ref(int))
 v --> (1, int)
@@ -84,7 +84,7 @@ Heap Table:
 Program ID: 15
 Execution Stack:
 new(a, v)
-(new(v, 30); new(a, v); print(readHeap(readHeap(a))))
+(new(v, 30); new(a, v); print(readHeap(readHeap(a))); print(Program no. 15 finished!))
 Symbols Table:
 a --> (0, Ref(int))
 v --> (1, int)
@@ -98,7 +98,7 @@ Heap Table:
 -------------------------
 Program ID: 15
 Execution Stack:
-(new(v, 30); new(a, v); print(readHeap(readHeap(a))))
+(new(v, 30); new(a, v); print(readHeap(readHeap(a))); print(Program no. 15 finished!))
 Symbols Table:
 a --> (2, Ref(int))
 v --> (1, int)
@@ -114,7 +114,7 @@ Heap Table:
 Program ID: 15
 Execution Stack:
 new(v, 30)
-(new(a, v); print(readHeap(readHeap(a))))
+(new(a, v); print(readHeap(readHeap(a))); print(Program no. 15 finished!))
 Symbols Table:
 a --> (2, Ref(int))
 v --> (1, int)
@@ -129,7 +129,24 @@ Heap Table:
 -------------------------
 Program ID: 15
 Execution Stack:
+(new(a, v); print(readHeap(readHeap(a))); print(Program no. 15 finished!))
+Symbols Table:
+a --> (2, Ref(int))
+v --> (3, int)
+Out List:
+
+File Table:
+
+Heap Table:
+1 --> 20
+2 --> (1, int)
+3 --> 30
+-------------------------
+-------------------------
+Program ID: 15
+Execution Stack:
 (new(a, v); print(readHeap(readHeap(a))))
+print(Program no. 15 finished!)
 Symbols Table:
 a --> (2, Ref(int))
 v --> (3, int)
@@ -147,6 +164,7 @@ Program ID: 15
 Execution Stack:
 new(a, v)
 print(readHeap(readHeap(a)))
+print(Program no. 15 finished!)
 Symbols Table:
 a --> (2, Ref(int))
 v --> (3, int)
@@ -163,6 +181,7 @@ Heap Table:
 Program ID: 15
 Execution Stack:
 print(readHeap(readHeap(a)))
+print(Program no. 15 finished!)
 Symbols Table:
 a --> (4, Ref(int))
 v --> (3, int)
@@ -179,7 +198,7 @@ Heap Table:
 -------------------------
 Program ID: 15
 Execution Stack:
-
+print(Program no. 15 finished!)
 Symbols Table:
 a --> (4, Ref(int))
 v --> (3, int)
@@ -189,6 +208,22 @@ File Table:
 
 Heap Table:
 1 --> 20
+3 --> 30
+4 --> (3, int)
+-------------------------
+-------------------------
+Program ID: 15
+Execution Stack:
+
+Symbols Table:
+a --> (4, Ref(int))
+v --> (3, int)
+Out List:
+30
+Program no. 15 finished!
+File Table:
+
+Heap Table:
 3 --> 30
 4 --> (3, int)
 -------------------------

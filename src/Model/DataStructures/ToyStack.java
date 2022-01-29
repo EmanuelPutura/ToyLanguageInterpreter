@@ -1,15 +1,14 @@
 package Model.DataStructures;
 
 import Model.Exceptions.EmptyStackException;
-import Model.Exceptions.StackException;
 import Model.Statements.IStatement;
 
 import java.util.Stack;
 
-public class ADTStack<E> implements IADTStack<E> {
+public class ToyStack<E> implements IADTStack<E> {
     private Stack<E> stack;
 
-    public ADTStack() {
+    public ToyStack() {
         stack = new Stack<E>();
     }
 
@@ -43,7 +42,7 @@ public class ADTStack<E> implements IADTStack<E> {
 
     @Override
     public IADTStack<E> deepCopy() {
-        IADTStack<E> new_stack = new ADTStack<E>();
+        IADTStack<E> new_stack = new ToyStack<E>();
         Stack<E> temp_stack = new Stack<E>();
 
         while (!stack.empty())

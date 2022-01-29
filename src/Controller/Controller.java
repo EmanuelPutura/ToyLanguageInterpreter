@@ -2,10 +2,7 @@ package Controller;
 
 import Model.DataStructures.IADTDictionary;
 import Model.DataStructures.IADTHeapDictionary;
-import Model.DataStructures.IADTStack;
-import Model.Exceptions.*;
 import Model.Program.ProgramState;
-import Model.Statements.IStatement;
 import Model.Values.IValue;
 import Model.Values.ReferenceValue;
 import Repository.IRepository;

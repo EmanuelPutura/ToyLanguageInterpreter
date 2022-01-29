@@ -3,10 +3,10 @@ package Model.DataStructures;
 import Model.Exceptions.DictionaryException;
 import Model.Values.IValue;
 
-public class ADTHeapDictionary extends ADTDictionary<Integer, IValue> implements IADTHeapDictionary {
+public class ToyHeapDictionary extends ToyDictionary<Integer, IValue> implements IADTHeapDictionary {
     private int next_free_location;
 
-    public ADTHeapDictionary() {
+    public ToyHeapDictionary() {
         super();
         this.next_free_location = 1;
     }
@@ -32,14 +32,8 @@ public class ADTHeapDictionary extends ADTDictionary<Integer, IValue> implements
 
     public int getFirstFreeLocation() {
         int location_address = 1;
-        boolean found = false;
-
-        while (this.dictionary.get(location_address) != null) {
+        while (this.dictionary.get(location_address) != null)
             location_address++;
-            found = true;
-        }
-        if (!found)
-            return -1;
         return location_address;
     }
 }

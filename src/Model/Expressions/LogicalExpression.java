@@ -6,7 +6,6 @@ import Model.Exceptions.DivisionByZeroException;
 import Model.Exceptions.ExpressionException;
 import Model.Types.BoolType;
 import Model.Types.IType;
-import Model.Types.IntType;
 import Model.Values.BoolValue;
 import Model.Values.IValue;
 

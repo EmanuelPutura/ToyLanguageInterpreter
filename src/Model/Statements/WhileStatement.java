@@ -13,8 +13,6 @@ import Model.Types.IType;
 import Model.Values.BoolValue;
 import Model.Values.IValue;
 
-import javax.swing.plaf.nimbus.State;
-
 public class WhileStatement implements IStatement {
     private IExpression while_expression;
     private IStatement statement;

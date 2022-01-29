@@ -1,8 +1,8 @@
 import Controller.Controller;
-import Model.DataStructures.ADTDictionary;
-import Model.DataStructures.ADTHeapDictionary;
-import Model.DataStructures.ADTList;
-import Model.DataStructures.ADTStack;
+import Model.DataStructures.ToyDictionary;
+import Model.DataStructures.ToyHeapDictionary;
+import Model.DataStructures.ToyList;
+import Model.DataStructures.ToyStack;
 import Model.Exceptions.StatementException;
 import Model.Expressions.*;
 import Model.Program.ProgramState;
@@ -66,7 +66,7 @@ public class Main extends Application {
 
     private static void typeCheck(IStatement statement) {
         try {
-            statement.typeCheck(new ADTDictionary<String, IType>());
+            statement.typeCheck(new ToyDictionary<String, IType>());
         } catch (StatementException e) {
             System.out.println(e.getMessage() + '\n');
         }
@@ -80,8 +80,8 @@ public class Main extends Application {
         IStatement st1 = new CompoundStatement(new DeclarationStatement("v", new IntType()), new CompoundStatement(
                 new AssignmentStatement("v", new ValueExpression(new IntValue(2))), new PrintStatement(new VariableExpression("v"))));
 
-        ProgramState program_state1 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st1);
+        ProgramState program_state1 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st1);
         Repository repository1 = new Repository(program_state1, file_paths[0]);
         Controller controller1 = new Controller(repository1);
         controllers.add(controller1);
@@ -92,8 +92,8 @@ public class Main extends Application {
                         new ValueExpression(new IntValue(3)), new ValueExpression(new IntValue(5)), '*'), '+')), new CompoundStatement(new AssignmentStatement("b",
                         new ArithmeticExpression(new VariableExpression("a"), new ValueExpression(new IntValue(1)), '+')), new PrintStatement(new VariableExpression("b"))))));
 
-        ProgramState program_state2 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st2);
+        ProgramState program_state2 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st2);
         Repository repository2 = new Repository(program_state2, file_paths[1]);
         Controller controller2 = new Controller(repository2);
         controllers.add(controller2);
@@ -104,8 +104,8 @@ public class Main extends Application {
                         new VariableExpression("a"),new AssignmentStatement("v", new ValueExpression(new IntValue(2))), new AssignmentStatement("v", new ValueExpression(
                         new IntValue(3)))), new PrintStatement(new VariableExpression("v"))))));
 
-        ProgramState program_state3 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st3);
+        ProgramState program_state3 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st3);
         Repository repository3 = new Repository(program_state3, file_paths[2]);
         Controller controller3 = new Controller(repository3);
         controllers.add(controller3);
@@ -114,8 +114,8 @@ public class Main extends Application {
         IStatement st4 = new CompoundStatement(st1, new CompoundStatement(new CompoundStatement(new DeclarationStatement("a", new IntType()), new AssignmentStatement("a",
                 new ArithmeticExpression(new VariableExpression("v"), new ValueExpression(new IntValue(2)), '+'))), new PrintStatement(new VariableExpression("a"))));
 
-        ProgramState program_state4 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st4);
+        ProgramState program_state4 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st4);
         Repository repository4 = new Repository(program_state4, file_paths[3]);
         Controller controller4 = new Controller(repository4);
         controllers.add(controller4);
@@ -125,8 +125,8 @@ public class Main extends Application {
                 new IntValue(2)))), new CompoundStatement(new DeclarationStatement("b", new IntType()), new AssignmentStatement("b", new ValueExpression(new IntValue(-5))))), new PrintStatement(
                 new ArithmeticExpression(new VariableExpression("a"), new VariableExpression("b"), '+')));
 
-        ProgramState program_state5 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st5);
+        ProgramState program_state5 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st5);
         Repository repository5 = new Repository(program_state5, file_paths[4]);
         Controller controller5 = new Controller(repository5);
         controllers.add(controller5);
@@ -136,8 +136,8 @@ public class Main extends Application {
                 new IntValue(2)))), new CompoundStatement(new DeclarationStatement("b", new IntType()), new AssignmentStatement("b", new ValueExpression(new IntValue(0))))), new PrintStatement(
                 new ArithmeticExpression(new VariableExpression("a"), new VariableExpression("b"), '/')));
 
-        ProgramState program_state6 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st6);
+        ProgramState program_state6 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st6);
         Repository repository6 = new Repository(program_state6, file_paths[5]);
         Controller controller6 = new Controller(repository6);
         controllers.add(controller6);
@@ -148,8 +148,8 @@ public class Main extends Application {
                         new CompoundStatement(new ReadFileStatement(new VariableExpression("varf"), "varc"), new CompoundStatement(new PrintStatement(new VariableExpression("varc")), new CompoundStatement((
                                 new ReadFileStatement(new VariableExpression("varf"), "varc")), new CompoundStatement(new PrintStatement(new VariableExpression("varc")), new CloseRFileStatement(new VariableExpression(("varf")))))))))));
 
-        ProgramState program_state7 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st7);
+        ProgramState program_state7 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st7);
         Repository repository7 = new Repository(program_state7, file_paths[6]);
         Controller controller7 = new Controller(repository7);
         controllers.add(controller7);
@@ -160,8 +160,8 @@ public class Main extends Application {
                         new RelationalExpression(new VariableExpression("a"), new ValueExpression(new IntValue(15)), ">="),new AssignmentStatement("v",
                         new ValueExpression(new IntValue(2))), new AssignmentStatement("v", new ValueExpression(new IntValue(3)))), new PrintStatement(new VariableExpression("v"))))));
 
-        ProgramState program_state8 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st8);
+        ProgramState program_state8 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st8);
         Repository repository8 = new Repository(program_state8, file_paths[7]);
         Controller controller8 = new Controller(repository8);
         controllers.add(controller8);
@@ -171,8 +171,8 @@ public class Main extends Application {
                 new CompoundStatement(new OpenRFileStatement(new VariableExpression("file1")), new CompoundStatement(new DeclarationStatement("file2", new StringType()), new CompoundStatement(new AssignmentStatement("file2",
                         new ValueExpression(new StringValue("test1.txt"))), new OpenRFileStatement(new VariableExpression("file2")))))));
 
-        ProgramState program_state9 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st9);
+        ProgramState program_state9 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st9);
         Repository repository9 = new Repository(program_state9, file_paths[8]);
         Controller controller9 = new Controller(repository9);
         controllers.add(controller9);
@@ -182,8 +182,8 @@ public class Main extends Application {
                 new CompoundStatement(new DeclarationStatement("a", new ReferenceType(new ReferenceType(new IntType()))), new CompoundStatement(new HeapAllocationStatement("a", new VariableExpression("v")),
                         new CompoundStatement(new PrintStatement(new VariableExpression("v")), new PrintStatement(new VariableExpression("a")))))));
 
-        ProgramState program_state10 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st10);
+        ProgramState program_state10 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st10);
         Repository repository10 = new Repository(program_state10, file_paths[9]);
         Controller controller10 = new Controller(repository10);
         controllers.add(controller10);
@@ -194,8 +194,8 @@ public class Main extends Application {
                         new CompoundStatement(new PrintStatement(new HeapReadingExpression(new VariableExpression("v"))), new PrintStatement(new ArithmeticExpression(
                                 new HeapReadingExpression(new HeapReadingExpression(new VariableExpression("a"))), new ValueExpression(new IntValue(5)), '+')))))));
 
-        ProgramState program_state11 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st11);
+        ProgramState program_state11 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st11);
         Repository repository11 = new Repository(program_state11, file_paths[10]);
         Controller controller11 = new Controller(repository11);
         controllers.add(controller11);
@@ -205,8 +205,8 @@ public class Main extends Application {
                 new CompoundStatement(new PrintStatement(new HeapReadingExpression(new VariableExpression("v"))), new CompoundStatement(new HeapWritingStatement("v", new ValueExpression(new IntValue(30))),
                         new PrintStatement(new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v")), new ValueExpression(new IntValue(5)), '+'))))));
 
-        ProgramState program_state12 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st12);
+        ProgramState program_state12 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st12);
         Repository repository12 = new Repository(program_state12, file_paths[11]);
         Controller controller12 = new Controller(repository12);
         controllers.add(controller12);
@@ -217,8 +217,8 @@ public class Main extends Application {
                         new CompoundStatement(new HeapAllocationStatement("v", new ValueExpression(new IntValue(30))), new PrintStatement(new HeapReadingExpression(
                                 new HeapReadingExpression(new VariableExpression("a")))))))));
 
-        ProgramState program_state13 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st13);
+        ProgramState program_state13 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st13);
         Repository repository13 = new Repository(program_state13, file_paths[12]);
         Controller controller13 = new Controller(repository13);
         controllers.add(controller13);
@@ -229,8 +229,8 @@ public class Main extends Application {
                         new CompoundStatement(new HeapAllocationStatement("v", new ValueExpression(new IntValue(30))), new PrintStatement(new HeapReadingExpression(
                                 new HeapReadingExpression(new VariableExpression("a")))))))));
 
-        ProgramState program_state14 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st14);
+        ProgramState program_state14 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st14);
         Repository repository14 = new Repository(program_state14, file_paths[13]);
         Controller controller14 = new Controller(repository14);
         controllers.add(controller14);
@@ -241,8 +241,8 @@ public class Main extends Application {
                 new CompoundStatement(new HeapAllocationStatement("v", new ValueExpression(new IntValue(30))), new CompoundStatement(new CompoundStatement(new HeapAllocationStatement("a", new VariableExpression("v")),
                 new PrintStatement(new HeapReadingExpression(new HeapReadingExpression(new VariableExpression("a"))))), new PrintStatement(new ValueExpression(new StringValue("Program no. 15 finished!")))))))));
 
-        ProgramState program_state15 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st15);
+        ProgramState program_state15 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st15);
         Repository repository15 = new Repository(program_state15, file_paths[14]);
         Controller controller15 = new Controller(repository15);
         controllers.add(controller15);
@@ -251,8 +251,8 @@ public class Main extends Application {
                 new VariableExpression("i"), new ValueExpression(new IntValue(0)), ">"), new CompoundStatement(new PrintStatement(new VariableExpression("i")),
                 new AssignmentStatement("i", new ArithmeticExpression(new VariableExpression("i"), new ValueExpression(new IntValue(1)), '-'))))));
 
-        ProgramState program_state16 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st16);
+        ProgramState program_state16 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st16);
         Repository repository16 = new Repository(program_state16, file_paths[15]);
         Controller controller16 = new Controller(repository16);
         controllers.add(controller16);
@@ -268,8 +268,8 @@ public class Main extends Application {
                         new PrintStatement(new VariableExpression("v")), new PrintStatement(new HeapReadingExpression(new VariableExpression("a")))
                 )))), new CompoundStatement(new PrintStatement(new VariableExpression("v")), new PrintStatement(new HeapReadingExpression(new VariableExpression("a")))))))));
 
-        ProgramState program_state17 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st17);
+        ProgramState program_state17 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st17);
         Repository repository17 = new Repository(program_state17, file_paths[16]);
         Controller controller17 = new Controller(repository17);
         controllers.add(controller17);
@@ -278,8 +278,8 @@ public class Main extends Application {
         IStatement st18 = new CompoundStatement(st1, new CompoundStatement(new CompoundStatement(new DeclarationStatement("a", new IntType()), new AssignmentStatement("a",
                 new ArithmeticExpression(new VariableExpression("v"), new ValueExpression(new StringValue("hey")), '+'))), new PrintStatement(new VariableExpression("a"))));
 
-        ProgramState program_state18 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
-                new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st18);
+        ProgramState program_state18 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), st18);
         Repository repository18 = new Repository(program_state18, file_paths[17]);
         Controller controller18 = new Controller(repository18);
 //        controllers.add(controller18);
@@ -314,7 +314,7 @@ public class Main extends Application {
         for (var i = 1; i <= controllers.size(); ++i) {
             IStatement statement = controllers.get(i - 1).getRepository().getInitialProgramState().getInitialStatement();
             try {
-                statement.typeCheck(new ADTDictionary<String, IType>());
+                statement.typeCheck(new ToyDictionary<String, IType>());
             } catch (StatementException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("TypeChecker Error");

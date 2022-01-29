@@ -10,8 +10,6 @@ import Model.Types.ReferenceType;
 import Model.Values.IValue;
 import Model.Values.ReferenceValue;
 
-import javax.swing.plaf.nimbus.State;
-
 public class HeapWritingStatement implements IStatement {
     private String variable_name;
     private IExpression expression;

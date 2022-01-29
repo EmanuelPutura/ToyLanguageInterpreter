@@ -12,8 +12,6 @@ import Model.Types.IType;
 import Model.Values.BoolValue;
 import Model.Values.IValue;
 
-import javax.swing.plaf.nimbus.State;
-
 public class ConditionalStatement implements IStatement {
     private IExpression expression;
     private IStatement then_statement;

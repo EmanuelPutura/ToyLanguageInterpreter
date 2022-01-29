@@ -10,8 +10,6 @@ import Model.Types.ReferenceType;
 import Model.Values.IValue;
 import Model.Values.ReferenceValue;
 
-import java.lang.ref.Reference;
-
 public class HeapAllocationStatement implements IStatement {
     private String variable_name;
     private IExpression expression;

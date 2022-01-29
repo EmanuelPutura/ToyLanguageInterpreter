@@ -2,7 +2,6 @@ package Model.Statements;
 
 import Model.DataStructures.IADTDictionary;
 import Model.DataStructures.IADTList;
-import Model.DataStructures.IADTStack;
 import Model.Exceptions.DivisionByZeroException;
 import Model.Exceptions.ExpressionException;
 import Model.Exceptions.StatementException;
