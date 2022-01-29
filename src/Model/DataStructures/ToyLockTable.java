@@ -31,6 +31,11 @@ public class ToyLockTable extends ToyDictionary<Integer, Integer> implements IAD
     }
 
     @Override
+    public int put() throws DictionaryException {
+        return put(-1);
+    }
+
+    @Override
     public int getFirstFreeLocation() {
         int location_address = 1;
         while (this.dictionary.get(location_address) != null)
