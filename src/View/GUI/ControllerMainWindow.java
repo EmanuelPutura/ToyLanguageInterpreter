@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.Callback;
+import javafx.util.Pair;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -60,6 +61,18 @@ public class ControllerMainWindow {
 
     @FXML
     private TableColumn<Map.Entry<Integer, Integer>, Integer> lock_program_column;
+
+    @FXML
+    private TableView<Map.Entry<Integer, Pair<Integer, List<Integer>>>> semaphore_table_view;
+
+    @FXML
+    private TableColumn<Map.Entry<Integer, Pair<Integer, List<Integer>>>, Integer> semaphore_location_column;
+
+    @FXML
+    private TableColumn<Map.Entry<Integer, Pair<Integer, List<Integer>>>, Integer> semaphore_value_column;
+
+    @FXML
+    private TableColumn<Map.Entry<Integer, Pair<Integer, List<Integer>>>, List<Integer>> semaphore_list_column;
 
     @FXML
     private TextField programs_text_field;
@@ -126,6 +139,11 @@ public class ControllerMainWindow {
         lock_obs.addAll(controller.getRepository().getInitialProgramState().lockTable().getContent().entrySet());
         lock_table_view.setItems(lock_obs);
         lock_table_view.refresh();
+
+        ObservableList<Map.Entry<Integer, Pair<Integer, List<Integer>>>> semaphore_obs = FXCollections.observableArrayList();
+        semaphore_obs.addAll(controller.getRepository().getInitialProgramState().semaphoreTable().getContent().entrySet());
+        semaphore_table_view.setItems(semaphore_obs);
+        semaphore_table_view.refresh();
 
         // deselect already completed programs
         if (programs_list_view.getSelectionModel().getSelectedIndices().size() == 0) {
@@ -220,6 +238,30 @@ public class ControllerMainWindow {
             public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Map.Entry<Integer, Integer>, Integer> entry) {
                 Map.Entry<Integer, Integer> map_entry = entry.getValue();
                 return new SimpleObjectProperty<Integer>(map_entry.getValue());
+            }
+        });
+
+        semaphore_location_column.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<Integer, Pair<Integer, List<Integer>>>, Integer>, ObservableValue<Integer>>() {
+            @Override
+            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Map.Entry<Integer, Pair<Integer, List<Integer>>>, Integer> entry) {
+                Map.Entry<Integer, Pair<Integer, List<Integer>>> map_entry = entry.getValue();
+                return new SimpleObjectProperty<Integer>(map_entry.getKey());
+            }
+        });
+
+        semaphore_value_column.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<Integer, Pair<Integer, List<Integer>>>, Integer>, ObservableValue<Integer>>() {
+            @Override
+            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Map.Entry<Integer, Pair<Integer, List<Integer>>>, Integer> entry) {
+                Map.Entry<Integer, Pair<Integer, List<Integer>>> map_entry = entry.getValue();
+                return new SimpleObjectProperty<Integer>(map_entry.getValue().getKey());
+            }
+        });
+
+        semaphore_list_column.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<Integer, Pair<Integer, List<Integer>>>, List<Integer>>, ObservableValue<List<Integer>>>() {
+            @Override
+            public ObservableValue<List<Integer>> call(TableColumn.CellDataFeatures<Map.Entry<Integer, Pair<Integer, List<Integer>>>, List<Integer>> entry) {
+                Map.Entry<Integer, Pair<Integer, List<Integer>>> map_entry = entry.getValue();
+                return new SimpleObjectProperty<List<Integer>>(map_entry.getValue().getValue());
             }
         });
 

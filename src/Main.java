@@ -5,6 +5,7 @@ import Model.Expressions.*;
 import Model.Program.ProgramState;
 import Model.Statements.*;
 import Model.Types.*;
+import Model.Utils.MergeStatements;
 import Model.Values.BoolValue;
 import Model.Values.IValue;
 import Model.Values.IntValue;
@@ -20,12 +21,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.locks.Lock;
 
 public class Main extends Application {
@@ -71,7 +71,7 @@ public class Main extends Application {
     }
 
     private static void initPrograms() {
-        int files_cnt = 19;
+        int files_cnt = 20;
         String[] file_paths = getFilePaths(files_cnt);
 
         // int v; v = 2; print(v);
@@ -79,7 +79,7 @@ public class Main extends Application {
                 new AssignmentStatement("v", new ValueExpression(new IntValue(2))), new PrintStatement(new VariableExpression("v"))));
 
         ProgramState program_state1 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st1);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st1);
         Repository repository1 = new Repository(program_state1, file_paths[0]);
         Controller controller1 = new Controller(repository1);
         controllers.add(controller1);
@@ -91,7 +91,7 @@ public class Main extends Application {
                         new ArithmeticExpression(new VariableExpression("a"), new ValueExpression(new IntValue(1)), '+')), new PrintStatement(new VariableExpression("b"))))));
 
         ProgramState program_state2 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st2);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st2);
         Repository repository2 = new Repository(program_state2, file_paths[1]);
         Controller controller2 = new Controller(repository2);
         controllers.add(controller2);
@@ -103,7 +103,7 @@ public class Main extends Application {
                         new IntValue(3)))), new PrintStatement(new VariableExpression("v"))))));
 
         ProgramState program_state3 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st3);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st3);
         Repository repository3 = new Repository(program_state3, file_paths[2]);
         Controller controller3 = new Controller(repository3);
         controllers.add(controller3);
@@ -113,7 +113,7 @@ public class Main extends Application {
                 new ArithmeticExpression(new VariableExpression("v"), new ValueExpression(new IntValue(2)), '+'))), new PrintStatement(new VariableExpression("a"))));
 
         ProgramState program_state4 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st4);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st4);
         Repository repository4 = new Repository(program_state4, file_paths[3]);
         Controller controller4 = new Controller(repository4);
         controllers.add(controller4);
@@ -124,7 +124,7 @@ public class Main extends Application {
                 new ArithmeticExpression(new VariableExpression("a"), new VariableExpression("b"), '+')));
 
         ProgramState program_state5 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st5);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st5);
         Repository repository5 = new Repository(program_state5, file_paths[4]);
         Controller controller5 = new Controller(repository5);
         controllers.add(controller5);
@@ -135,7 +135,7 @@ public class Main extends Application {
                 new ArithmeticExpression(new VariableExpression("a"), new VariableExpression("b"), '/')));
 
         ProgramState program_state6 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st6);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st6);
         Repository repository6 = new Repository(program_state6, file_paths[5]);
         Controller controller6 = new Controller(repository6);
         controllers.add(controller6);
@@ -147,7 +147,7 @@ public class Main extends Application {
                                 new ReadFileStatement(new VariableExpression("varf"), "varc")), new CompoundStatement(new PrintStatement(new VariableExpression("varc")), new CloseRFileStatement(new VariableExpression(("varf")))))))))));
 
         ProgramState program_state7 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st7);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st7);
         Repository repository7 = new Repository(program_state7, file_paths[6]);
         Controller controller7 = new Controller(repository7);
         controllers.add(controller7);
@@ -159,7 +159,7 @@ public class Main extends Application {
                         new ValueExpression(new IntValue(2))), new AssignmentStatement("v", new ValueExpression(new IntValue(3)))), new PrintStatement(new VariableExpression("v"))))));
 
         ProgramState program_state8 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st8);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st8);
         Repository repository8 = new Repository(program_state8, file_paths[7]);
         Controller controller8 = new Controller(repository8);
         controllers.add(controller8);
@@ -170,7 +170,7 @@ public class Main extends Application {
                         new ValueExpression(new StringValue("test1.txt"))), new OpenRFileStatement(new VariableExpression("file2")))))));
 
         ProgramState program_state9 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st9);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st9);
         Repository repository9 = new Repository(program_state9, file_paths[8]);
         Controller controller9 = new Controller(repository9);
         controllers.add(controller9);
@@ -181,7 +181,7 @@ public class Main extends Application {
                         new CompoundStatement(new PrintStatement(new VariableExpression("v")), new PrintStatement(new VariableExpression("a")))))));
 
         ProgramState program_state10 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st10);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st10);
         Repository repository10 = new Repository(program_state10, file_paths[9]);
         Controller controller10 = new Controller(repository10);
         controllers.add(controller10);
@@ -193,7 +193,7 @@ public class Main extends Application {
                                 new HeapReadingExpression(new HeapReadingExpression(new VariableExpression("a"))), new ValueExpression(new IntValue(5)), '+')))))));
 
         ProgramState program_state11 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st11);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st11);
         Repository repository11 = new Repository(program_state11, file_paths[10]);
         Controller controller11 = new Controller(repository11);
         controllers.add(controller11);
@@ -204,7 +204,7 @@ public class Main extends Application {
                         new PrintStatement(new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v")), new ValueExpression(new IntValue(5)), '+'))))));
 
         ProgramState program_state12 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st12);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st12);
         Repository repository12 = new Repository(program_state12, file_paths[11]);
         Controller controller12 = new Controller(repository12);
         controllers.add(controller12);
@@ -216,7 +216,7 @@ public class Main extends Application {
                                 new HeapReadingExpression(new VariableExpression("a")))))))));
 
         ProgramState program_state13 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st13);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st13);
         Repository repository13 = new Repository(program_state13, file_paths[12]);
         Controller controller13 = new Controller(repository13);
         controllers.add(controller13);
@@ -228,7 +228,7 @@ public class Main extends Application {
                                 new HeapReadingExpression(new VariableExpression("a")))))))));
 
         ProgramState program_state14 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st14);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st14);
         Repository repository14 = new Repository(program_state14, file_paths[13]);
         Controller controller14 = new Controller(repository14);
         controllers.add(controller14);
@@ -240,7 +240,7 @@ public class Main extends Application {
                 new PrintStatement(new HeapReadingExpression(new HeapReadingExpression(new VariableExpression("a"))))), new PrintStatement(new ValueExpression(new StringValue("Program no. 15 finished!")))))))));
 
         ProgramState program_state15 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st15);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st15);
         Repository repository15 = new Repository(program_state15, file_paths[14]);
         Controller controller15 = new Controller(repository15);
         controllers.add(controller15);
@@ -250,7 +250,7 @@ public class Main extends Application {
                 new AssignmentStatement("i", new ArithmeticExpression(new VariableExpression("i"), new ValueExpression(new IntValue(1)), '-'))))));
 
         ProgramState program_state16 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st16);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st16);
         Repository repository16 = new Repository(program_state16, file_paths[15]);
         Controller controller16 = new Controller(repository16);
         controllers.add(controller16);
@@ -267,7 +267,7 @@ public class Main extends Application {
                 )))), new CompoundStatement(new PrintStatement(new VariableExpression("v")), new PrintStatement(new HeapReadingExpression(new VariableExpression("a")))))))));
 
         ProgramState program_state17 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st17);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st17);
         Repository repository17 = new Repository(program_state17, file_paths[16]);
         Controller controller17 = new Controller(repository17);
         controllers.add(controller17);
@@ -277,59 +277,87 @@ public class Main extends Application {
                 new ArithmeticExpression(new VariableExpression("v"), new ValueExpression(new StringValue("hey")), '+'))), new PrintStatement(new VariableExpression("a"))));
 
         ProgramState program_state18 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st18);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st18);
         Repository repository18 = new Repository(program_state18, file_paths[17]);
         Controller controller18 = new Controller(repository18);
 //        controllers.add(controller18);
 
-        IStatement st19 =
-            new CompoundStatement(new DeclarationStatement("v1", new ReferenceType(new IntType())),
-            new CompoundStatement(new DeclarationStatement("v2", new ReferenceType(new IntType())),
-            new CompoundStatement(new DeclarationStatement("x", new IntType()),
-            new CompoundStatement(new DeclarationStatement("q", new IntType()),
-            new CompoundStatement(new HeapAllocationStatement("v1", new ValueExpression(new IntValue(20))),
-            new CompoundStatement(new HeapAllocationStatement("v2", new ValueExpression(new IntValue(30))),
-            new CompoundStatement(new NewLockStatement("x"),
-            new CompoundStatement(new ForkStatement(
-                new CompoundStatement(new ForkStatement(
-                        new CompoundStatement(new LockStatement("x"),
-                        new CompoundStatement(new HeapWritingStatement("v1", new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v1")), new ValueExpression(new IntValue(1)), '-')),
-                        new UnlockStatement("x")
-                        ))),
-                new CompoundStatement(new LockStatement("x"),
-                new CompoundStatement(new HeapWritingStatement("v1", new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v1")), new ValueExpression(new IntValue(10)), '*')),
+        List<IStatement> statements19 = new Vector<IStatement>();
+        statements19.add(new DeclarationStatement("v1", new ReferenceType(new IntType())));
+        statements19.add(new DeclarationStatement("v2", new ReferenceType(new IntType())));
+        statements19.add(new DeclarationStatement("x", new IntType()));
+        statements19.add(new DeclarationStatement("q", new IntType()));
+        statements19.add(new HeapAllocationStatement("v1", new ValueExpression(new IntValue(20))));
+        statements19.add(new HeapAllocationStatement("v2", new ValueExpression(new IntValue(30))));
+        statements19.add(new NewLockStatement("x"));
+        statements19.add(new ForkStatement(MergeStatements.merge(new Vector<IStatement>(Arrays.asList(
+            new ForkStatement(MergeStatements.merge(new Vector<IStatement>(Arrays.asList(
+                    new LockStatement("x"),
+                    new HeapWritingStatement("v1", new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v1")), new ValueExpression(new IntValue(1)), '-')),
+                    new UnlockStatement("x")
+            )))),
+            new LockStatement("x"),
+            new HeapWritingStatement("v1", new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v1")), new ValueExpression(new IntValue(10)), '*')),
                 new UnlockStatement("x")
-                )))),
-            new CompoundStatement(new NewLockStatement("q"),
-            new CompoundStatement(new ForkStatement(
-                new CompoundStatement(new ForkStatement(
-                        new CompoundStatement(new LockStatement("q"),
-                        new CompoundStatement(new HeapWritingStatement("v2", new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v2")), new ValueExpression(new IntValue(5)), '+')),
-                        new UnlockStatement("q")
-                        ))),
-                    new CompoundStatement(
-                        new LockStatement("q"),
-                        new CompoundStatement(new HeapWritingStatement("v2", new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v2")), new ValueExpression(new IntValue(10)), '*')),
-                        new UnlockStatement("q")
-                    ))
-                )),
-            new CompoundStatement(new NOPStatement(),
-            new CompoundStatement(new NOPStatement(),
-            new CompoundStatement(new NOPStatement(),
-            new CompoundStatement(new NOPStatement(),
-            new CompoundStatement(new LockStatement("x"),
-            new CompoundStatement(new PrintStatement(new HeapReadingExpression(new VariableExpression("v1"))),
-            new CompoundStatement(new UnlockStatement("x"),
-            new CompoundStatement(new LockStatement("q"),
-            new CompoundStatement(new PrintStatement(new HeapReadingExpression(new VariableExpression("v2"))),
+        )))));
+        statements19.add(new NewLockStatement("q"));
+        statements19.add(new ForkStatement(MergeStatements.merge(new Vector<IStatement>(Arrays.asList(
+            new ForkStatement(MergeStatements.merge(new Vector<IStatement>(Arrays.asList(
+                new LockStatement("q"),
+                new HeapWritingStatement("v2", new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v2")), new ValueExpression(new IntValue(5)), '+')),
+                new UnlockStatement("q")
+            )))),
+            new LockStatement("q"),
+            new HeapWritingStatement("v2", new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v2")), new ValueExpression(new IntValue(10)), '*')),
             new UnlockStatement("q")
-            )))))))))))))))))));
+        )))));
+        statements19.add(new NOPStatement());
+        statements19.add(new NOPStatement());
+        statements19.add(new NOPStatement());
+        statements19.add(new NOPStatement());
+        statements19.add(new LockStatement("x"));
+        statements19.add(new PrintStatement(new HeapReadingExpression(new VariableExpression("v1"))));
+        statements19.add(new UnlockStatement("x"));
+        statements19.add(new LockStatement("q"));
+        statements19.add(new PrintStatement(new HeapReadingExpression(new VariableExpression("v2"))));
+        statements19.add(new UnlockStatement("q"));
 
+        IStatement st19 = MergeStatements.merge(statements19);
         ProgramState program_state19 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
-                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st19);
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st19);
         Repository repository19 = new Repository(program_state19, file_paths[18]);
         Controller controller19 = new Controller(repository19);
         controllers.add(controller19);
+
+        List<IStatement> statements20 = new Vector<>(Arrays.asList(
+                new DeclarationStatement("v1", new ReferenceType(new IntType())),
+                new DeclarationStatement("cnt", new IntType()),
+                new HeapAllocationStatement("v1", new ValueExpression(new IntValue(1))),
+                new NewSemaphoreStatement("cnt", new HeapReadingExpression(new VariableExpression("v1"))),
+                new ForkStatement(MergeStatements.merge(new Vector<>(Arrays.asList(
+                        new AcquireSemaphoreStatement("cnt"),
+                        new HeapWritingStatement("v1", new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v1")), new ValueExpression(new IntValue(10)), '*')),
+                        new PrintStatement(new HeapReadingExpression(new VariableExpression("v1"))),
+                        new ReleaseSemaphoreStatement("cnt")
+                )))),
+                new ForkStatement(MergeStatements.merge(new Vector<>(Arrays.asList(
+                        new AcquireSemaphoreStatement("cnt"),
+                        new HeapWritingStatement("v1", new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v1")), new ValueExpression(new IntValue(10)), '*')),
+                        new HeapWritingStatement("v1", new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v1")), new ValueExpression(new IntValue(2)), '*')),
+                        new PrintStatement(new HeapReadingExpression(new VariableExpression("v1"))),
+                        new ReleaseSemaphoreStatement("cnt")
+                )))),
+                new AcquireSemaphoreStatement("cnt"),
+                new PrintStatement(new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v1")), new ValueExpression(new IntValue(1)), '-')),
+                new ReleaseSemaphoreStatement("cnt")
+        ));
+
+        IStatement st20 = MergeStatements.merge(statements20);
+        ProgramState program_state20 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), new ToySemaphoreTable(), st20);
+        Repository repository20 = new Repository(program_state20, file_paths[19]);
+        Controller controller20 = new Controller(repository20);
+        controllers.add(controller20);
     }
 
     private static void consoleLaunch(String[] args) {

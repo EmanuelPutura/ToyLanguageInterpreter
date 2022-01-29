@@ -40,10 +40,11 @@ public class NewLockStatement implements IStatement {
                 throw new StatementException(String.format("Variable '%s' has not been declared!", variable_name));
             if (!var_type.equals(new IntType()))
                 throw new StatementException(String.format("Variable '%s' must be of integer type!", variable_name));
-            return type_env;
         } catch (DictionaryException e) {
             throw new StatementException(e.getMessage());
         }
+
+        return type_env;
     }
 
     @Override
