@@ -3,8 +3,6 @@ package Model.DataStructures;
 import Model.Exceptions.DictionaryException;
 import Model.Values.IValue;
 
-import java.util.Map;
-
 public class ADTHeapDictionary extends ADTDictionary<Integer, IValue> implements IADTHeapDictionary {
     private int next_free_location;
 
@@ -18,13 +16,17 @@ public class ADTHeapDictionary extends ADTDictionary<Integer, IValue> implements
         if (!key.equals(next_free_location))
             throw new DictionaryException("Invalid heap location!");
         super.put(key, value);
-        next_free_location++;
+        synchronized (this) {
+            next_free_location++;
+        }
     }
 
     @Override
     public int put(IValue value) throws DictionaryException {
         super.put(next_free_location, value);
-        next_free_location++;
+        synchronized (this) {
+            next_free_location++;
+        }
         return next_free_location - 1;
     }
 

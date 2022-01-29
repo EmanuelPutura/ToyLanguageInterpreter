@@ -238,8 +238,8 @@ public class Main extends Application {
         // Ref(int) v; new(v, 20); Ref(Ref(int)) a; new(a, v); new(v, 30); print(heapRead(heapRead(a)));
         IStatement st15 = new CompoundStatement(new DeclarationStatement("v", new ReferenceType(new IntType())), new CompoundStatement(new HeapAllocationStatement("v", new ValueExpression(new IntValue(20))),
                 new CompoundStatement(new DeclarationStatement("a", new ReferenceType(new ReferenceType(new IntType()))), new CompoundStatement(new HeapAllocationStatement("a", new VariableExpression("v")),
-                        new CompoundStatement(new HeapAllocationStatement("v", new ValueExpression(new IntValue(30))), new CompoundStatement(new HeapAllocationStatement("a", new VariableExpression("v")),
-                                new PrintStatement(new HeapReadingExpression(new HeapReadingExpression(new VariableExpression("a"))))))))));
+                new CompoundStatement(new HeapAllocationStatement("v", new ValueExpression(new IntValue(30))), new CompoundStatement(new CompoundStatement(new HeapAllocationStatement("a", new VariableExpression("v")),
+                new PrintStatement(new HeapReadingExpression(new HeapReadingExpression(new VariableExpression("a"))))), new PrintStatement(new ValueExpression(new StringValue("Program no. 15 finished!")))))))));
 
         ProgramState program_state15 = new ProgramState(new ADTStack<IStatement>(), new ADTDictionary<String, IValue>(), new ADTList<IValue>(),
                 new ADTDictionary<StringValue, BufferedReader>(), new ADTHeapDictionary(), st15);

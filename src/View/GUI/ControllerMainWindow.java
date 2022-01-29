@@ -75,11 +75,13 @@ public class ControllerMainWindow {
     @FXML
     public void handleRunOneStepButton(ActionEvent event) {
         try {
-            if (controller.removeCompletedPrograms(controller.getRepository().getProgramStateList()).size() > 0) {
+            List<ProgramState> completed_programs = controller.removeCompletedPrograms(controller.getRepository().getProgramStateList());
+            if (completed_programs.size() > 0) {
                 controller.runOneStepForAllPrograms();
                 applyRepositoryModifications();
                 programs_text_field.setText("Number of ProgramStates: " + Integer.toString(controller.getRepository().getProgramStateList().size()));
             }
+
             if (controller.removeCompletedPrograms(controller.getRepository().getProgramStateList()).size() == 0) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Program execution finished");
@@ -119,6 +121,11 @@ public class ControllerMainWindow {
         ObservableList<ProgramState> programs_obs = FXCollections.observableArrayList();
         programs_obs.addAll(new ArrayList<ProgramState>(controller.getRepository().getProgramStateList()));
         programs_list_view.setItems(programs_obs);  // notice that this call updates also the execution stack list view
+
+        // deselect already completed programs
+        if (programs_list_view.getSelectionModel().getSelectedIndices().size() == 0) {
+            programs_list_view.getSelectionModel().select(0);
+        }
     }
 
     @FXML
