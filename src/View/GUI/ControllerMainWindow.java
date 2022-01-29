@@ -2,13 +2,10 @@ package View.GUI;
 
 import Controller.Controller;
 import Controller.ControllerException;
-import Model.Exceptions.ProgramException;
 import Model.Program.ProgramState;
 import Model.Statements.IStatement;
 import Model.Values.IValue;
 import Model.Values.StringValue;
-import Repository.IRepository;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -16,15 +13,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -60,6 +51,15 @@ public class ControllerMainWindow {
 
     @FXML
     private ListView<IStatement> stack_list_view;
+
+    @FXML
+    private TableView<Map.Entry<Integer, Integer>> lock_table_view;
+
+    @FXML
+    private TableColumn<Map.Entry<Integer, Integer>, Integer> lock_location_column;
+
+    @FXML
+    private TableColumn<Map.Entry<Integer, Integer>, Integer> lock_program_column;
 
     @FXML
     private TextField programs_text_field;
@@ -121,6 +121,11 @@ public class ControllerMainWindow {
         ObservableList<ProgramState> programs_obs = FXCollections.observableArrayList();
         programs_obs.addAll(new ArrayList<ProgramState>(controller.getRepository().getProgramStateList()));
         programs_list_view.setItems(programs_obs);  // notice that this call updates also the execution stack list view
+
+        ObservableList<Map.Entry<Integer, Integer>> lock_obs = FXCollections.observableArrayList();
+        lock_obs.addAll(controller.getRepository().getInitialProgramState().lockTable().getContent().entrySet());
+        lock_table_view.setItems(lock_obs);
+        lock_table_view.refresh();
 
         // deselect already completed programs
         if (programs_list_view.getSelectionModel().getSelectedIndices().size() == 0) {
@@ -199,6 +204,22 @@ public class ControllerMainWindow {
             public ObservableValue<IValue> call(TableColumn.CellDataFeatures<Map.Entry<String, IValue>, IValue> entry) {
                 Map.Entry<String, IValue> map_entry = entry.getValue();
                 return new SimpleObjectProperty<IValue>(map_entry.getValue());
+            }
+        });
+
+        lock_location_column.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<Integer, Integer>, Integer>, ObservableValue<Integer>>() {
+            @Override
+            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Map.Entry<Integer, Integer>, Integer> entry) {
+                Map.Entry<Integer, Integer> map_entry = entry.getValue();
+                return new SimpleObjectProperty<Integer>(map_entry.getKey());
+            }
+        });
+
+        lock_program_column.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<Integer, Integer>, Integer>, ObservableValue<Integer>>() {
+            @Override
+            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Map.Entry<Integer, Integer>, Integer> entry) {
+                Map.Entry<Integer, Integer> map_entry = entry.getValue();
+                return new SimpleObjectProperty<Integer>(map_entry.getValue());
             }
         });
 

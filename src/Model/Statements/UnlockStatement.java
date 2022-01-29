@@ -27,10 +27,11 @@ public class UnlockStatement implements IStatement {
                 throw new StatementException(String.format("Variable '%s' must be of integer type!", variable_name));
 
             int found_index = ((IntValue) value).getValue();
-            if (state.lockTable().get(found_index) == null)
+            Integer current_program = state.lockTable().get(found_index);
+            if (current_program == null)
                 throw new StatementException("Invalid lock!");
 
-            if (found_index == state.programID())
+            if (current_program == state.programID())
                 state.lockTable().replace(found_index, -1);
         } catch (DictionaryException error) {
             throw new StatementException(error.getMessage());

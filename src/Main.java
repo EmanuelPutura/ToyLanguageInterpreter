@@ -26,6 +26,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.locks.Lock;
 
 public class Main extends Application {
     private static List<Controller> controllers = new ArrayList<Controller>();
@@ -70,7 +71,7 @@ public class Main extends Application {
     }
 
     private static void initPrograms() {
-        int files_cnt = 18;
+        int files_cnt = 19;
         String[] file_paths = getFilePaths(files_cnt);
 
         // int v; v = 2; print(v);
@@ -280,6 +281,55 @@ public class Main extends Application {
         Repository repository18 = new Repository(program_state18, file_paths[17]);
         Controller controller18 = new Controller(repository18);
 //        controllers.add(controller18);
+
+        IStatement st19 =
+            new CompoundStatement(new DeclarationStatement("v1", new ReferenceType(new IntType())),
+            new CompoundStatement(new DeclarationStatement("v2", new ReferenceType(new IntType())),
+            new CompoundStatement(new DeclarationStatement("x", new IntType()),
+            new CompoundStatement(new DeclarationStatement("q", new IntType()),
+            new CompoundStatement(new HeapAllocationStatement("v1", new ValueExpression(new IntValue(20))),
+            new CompoundStatement(new HeapAllocationStatement("v2", new ValueExpression(new IntValue(30))),
+            new CompoundStatement(new NewLockStatement("x"),
+            new CompoundStatement(new ForkStatement(
+                new CompoundStatement(new ForkStatement(
+                        new CompoundStatement(new LockStatement("x"),
+                        new CompoundStatement(new HeapWritingStatement("v1", new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v1")), new ValueExpression(new IntValue(1)), '-')),
+                        new UnlockStatement("x")
+                        ))),
+                new CompoundStatement(new LockStatement("x"),
+                new CompoundStatement(new HeapWritingStatement("v1", new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v1")), new ValueExpression(new IntValue(10)), '*')),
+                new UnlockStatement("x")
+                )))),
+            new CompoundStatement(new NewLockStatement("q"),
+            new CompoundStatement(new ForkStatement(
+                new CompoundStatement(new ForkStatement(
+                        new CompoundStatement(new LockStatement("q"),
+                        new CompoundStatement(new HeapWritingStatement("v2", new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v2")), new ValueExpression(new IntValue(5)), '+')),
+                        new UnlockStatement("q")
+                        ))),
+                    new CompoundStatement(
+                        new LockStatement("q"),
+                        new CompoundStatement(new HeapWritingStatement("v2", new ArithmeticExpression(new HeapReadingExpression(new VariableExpression("v2")), new ValueExpression(new IntValue(10)), '*')),
+                        new UnlockStatement("q")
+                    ))
+                )),
+            new CompoundStatement(new NOPStatement(),
+            new CompoundStatement(new NOPStatement(),
+            new CompoundStatement(new NOPStatement(),
+            new CompoundStatement(new NOPStatement(),
+            new CompoundStatement(new LockStatement("x"),
+            new CompoundStatement(new PrintStatement(new HeapReadingExpression(new VariableExpression("v1"))),
+            new CompoundStatement(new UnlockStatement("x"),
+            new CompoundStatement(new LockStatement("q"),
+            new CompoundStatement(new PrintStatement(new HeapReadingExpression(new VariableExpression("v2"))),
+            new UnlockStatement("q")
+            )))))))))))))))))));
+
+        ProgramState program_state19 = new ProgramState(new ToyStack<IStatement>(), new ToyDictionary<String, IValue>(), new ToyList<IValue>(),
+                new ToyDictionary<StringValue, BufferedReader>(), new ToyHeapDictionary(), new ToyLockTable(), st19);
+        Repository repository19 = new Repository(program_state19, file_paths[18]);
+        Controller controller19 = new Controller(repository19);
+        controllers.add(controller19);
     }
 
     private static void consoleLaunch(String[] args) {

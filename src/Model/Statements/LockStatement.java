@@ -27,10 +27,11 @@ public class LockStatement implements IStatement {
                 throw new StatementException(String.format("Variable '%s' must be of integer type!", variable_name));
 
             int found_index = ((IntValue) value).getValue();
-            if (state.lockTable().get(found_index) == null)
+            Integer current_program = state.lockTable().get(found_index);
+            if (current_program == null)
                 throw new StatementException("Invalid lock!");
 
-            if (found_index == -1)
+            if (current_program == -1)
                 state.lockTable().replace(found_index, state.programID());
             else
                 state.executionStack().push(this);
