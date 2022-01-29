@@ -1,0 +1,142 @@
+-------------------------
+Program ID: 8
+Execution Stack:
+int a
+(int v; a = 25; IF (a >= 15) THEN (v = 2) ELSE (v = 3); print(v))
+Symbols Table:
+
+Out List:
+
+File Table:
+
+Heap Table:
+
+-------------------------
+-------------------------
+Program ID: 8
+Execution Stack:
+(int v; a = 25; IF (a >= 15) THEN (v = 2) ELSE (v = 3); print(v))
+Symbols Table:
+a --> 0
+Out List:
+
+File Table:
+
+Heap Table:
+
+-------------------------
+-------------------------
+Program ID: 8
+Execution Stack:
+int v
+(a = 25; IF (a >= 15) THEN (v = 2) ELSE (v = 3); print(v))
+Symbols Table:
+a --> 0
+Out List:
+
+File Table:
+
+Heap Table:
+
+-------------------------
+-------------------------
+Program ID: 8
+Execution Stack:
+(a = 25; IF (a >= 15) THEN (v = 2) ELSE (v = 3); print(v))
+Symbols Table:
+a --> 0
+v --> 0
+Out List:
+
+File Table:
+
+Heap Table:
+
+-------------------------
+-------------------------
+Program ID: 8
+Execution Stack:
+a = 25
+(IF (a >= 15) THEN (v = 2) ELSE (v = 3); print(v))
+Symbols Table:
+a --> 0
+v --> 0
+Out List:
+
+File Table:
+
+Heap Table:
+
+-------------------------
+-------------------------
+Program ID: 8
+Execution Stack:
+(IF (a >= 15) THEN (v = 2) ELSE (v = 3); print(v))
+Symbols Table:
+a --> 25
+v --> 0
+Out List:
+
+File Table:
+
+Heap Table:
+
+-------------------------
+-------------------------
+Program ID: 8
+Execution Stack:
+IF (a >= 15) THEN (v = 2) ELSE (v = 3)
+print(v)
+Symbols Table:
+a --> 25
+v --> 0
+Out List:
+
+File Table:
+
+Heap Table:
+
+-------------------------
+-------------------------
+Program ID: 8
+Execution Stack:
+v = 2
+print(v)
+Symbols Table:
+a --> 25
+v --> 0
+Out List:
+
+File Table:
+
+Heap Table:
+
+-------------------------
+-------------------------
+Program ID: 8
+Execution Stack:
+print(v)
+Symbols Table:
+a --> 25
+v --> 2
+Out List:
+
+File Table:
+
+Heap Table:
+
+-------------------------
+-------------------------
+Program ID: 8
+Execution Stack:
+
+Symbols Table:
+a --> 25
+v --> 2
+Out List:
+2
+File Table:
+
+Heap Table:
+
+-------------------------
