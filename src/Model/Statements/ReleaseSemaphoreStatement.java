@@ -69,6 +69,6 @@ public class ReleaseSemaphoreStatement implements IStatement {
 
     @Override
     public String toString() {
-        return String.format("release(%s)", variable_name);
+        return String.format("releaseSemaphore(%s)", variable_name);
     }
 }

@@ -2,7 +2,7 @@
 Program ID: 20
 Execution Stack:
 Ref(int) v1
-(int cnt; new(v1, 1); newSemaphore(cnt, readHeap(v1)); fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); release(cnt)); fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt)); acquire(cnt); print(readHeap(v1) - 1); release(cnt))
+(int cnt; new(v1, 1); newSemaphore(cnt, readHeap(v1)); fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); releaseSemaphore(cnt)); fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt)); acquireSemaphore(cnt); print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 
 Out List:
@@ -15,7 +15,7 @@ Heap Table:
 -------------------------
 Program ID: 20
 Execution Stack:
-(int cnt; new(v1, 1); newSemaphore(cnt, readHeap(v1)); fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); release(cnt)); fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt)); acquire(cnt); print(readHeap(v1) - 1); release(cnt))
+(int cnt; new(v1, 1); newSemaphore(cnt, readHeap(v1)); fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); releaseSemaphore(cnt)); fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt)); acquireSemaphore(cnt); print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 v1 --> (0, int)
 Out List:
@@ -29,7 +29,7 @@ Heap Table:
 Program ID: 20
 Execution Stack:
 int cnt
-(new(v1, 1); newSemaphore(cnt, readHeap(v1)); fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); release(cnt)); fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt)); acquire(cnt); print(readHeap(v1) - 1); release(cnt))
+(new(v1, 1); newSemaphore(cnt, readHeap(v1)); fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); releaseSemaphore(cnt)); fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt)); acquireSemaphore(cnt); print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 v1 --> (0, int)
 Out List:
@@ -42,7 +42,7 @@ Heap Table:
 -------------------------
 Program ID: 20
 Execution Stack:
-(new(v1, 1); newSemaphore(cnt, readHeap(v1)); fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); release(cnt)); fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt)); acquire(cnt); print(readHeap(v1) - 1); release(cnt))
+(new(v1, 1); newSemaphore(cnt, readHeap(v1)); fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); releaseSemaphore(cnt)); fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt)); acquireSemaphore(cnt); print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 0
 v1 --> (0, int)
@@ -57,7 +57,7 @@ Heap Table:
 Program ID: 20
 Execution Stack:
 new(v1, 1)
-(newSemaphore(cnt, readHeap(v1)); fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); release(cnt)); fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt)); acquire(cnt); print(readHeap(v1) - 1); release(cnt))
+(newSemaphore(cnt, readHeap(v1)); fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); releaseSemaphore(cnt)); fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt)); acquireSemaphore(cnt); print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 0
 v1 --> (0, int)
@@ -71,7 +71,7 @@ Heap Table:
 -------------------------
 Program ID: 20
 Execution Stack:
-(newSemaphore(cnt, readHeap(v1)); fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); release(cnt)); fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt)); acquire(cnt); print(readHeap(v1) - 1); release(cnt))
+(newSemaphore(cnt, readHeap(v1)); fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); releaseSemaphore(cnt)); fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt)); acquireSemaphore(cnt); print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 0
 v1 --> (1, int)
@@ -86,7 +86,7 @@ Heap Table:
 Program ID: 20
 Execution Stack:
 newSemaphore(cnt, readHeap(v1))
-(fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); release(cnt)); fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt)); acquire(cnt); print(readHeap(v1) - 1); release(cnt))
+(fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); releaseSemaphore(cnt)); fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt)); acquireSemaphore(cnt); print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 0
 v1 --> (1, int)
@@ -100,7 +100,7 @@ Heap Table:
 -------------------------
 Program ID: 20
 Execution Stack:
-(fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); release(cnt)); fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt)); acquire(cnt); print(readHeap(v1) - 1); release(cnt))
+(fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); releaseSemaphore(cnt)); fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt)); acquireSemaphore(cnt); print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -114,8 +114,8 @@ Heap Table:
 -------------------------
 Program ID: 20
 Execution Stack:
-fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); release(cnt))
-(fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt)); acquire(cnt); print(readHeap(v1) - 1); release(cnt))
+fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); releaseSemaphore(cnt))
+(fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt)); acquireSemaphore(cnt); print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -129,7 +129,7 @@ Heap Table:
 -------------------------
 Program ID: 20
 Execution Stack:
-(fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt)); acquire(cnt); print(readHeap(v1) - 1); release(cnt))
+(fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt)); acquireSemaphore(cnt); print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -143,7 +143,7 @@ Heap Table:
 -------------------------
 Program ID: 21
 Execution Stack:
-(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); release(cnt))
+(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -157,8 +157,8 @@ Heap Table:
 -------------------------
 Program ID: 20
 Execution Stack:
-fork(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt))
-(acquire(cnt); print(readHeap(v1) - 1); release(cnt))
+fork(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt))
+(acquireSemaphore(cnt); print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -172,8 +172,8 @@ Heap Table:
 -------------------------
 Program ID: 21
 Execution Stack:
-acquire(cnt)
-(heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); release(cnt))
+acquireSemaphore(cnt)
+(heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -187,7 +187,7 @@ Heap Table:
 -------------------------
 Program ID: 20
 Execution Stack:
-(acquire(cnt); print(readHeap(v1) - 1); release(cnt))
+(acquireSemaphore(cnt); print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -201,7 +201,7 @@ Heap Table:
 -------------------------
 Program ID: 21
 Execution Stack:
-(heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); release(cnt))
+(heapWrite(v1, readHeap(v1) * 10); print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -215,7 +215,7 @@ Heap Table:
 -------------------------
 Program ID: 22
 Execution Stack:
-(acquire(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt))
+(acquireSemaphore(cnt); heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -229,8 +229,8 @@ Heap Table:
 -------------------------
 Program ID: 20
 Execution Stack:
-acquire(cnt)
-(print(readHeap(v1) - 1); release(cnt))
+acquireSemaphore(cnt)
+(print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -245,7 +245,7 @@ Heap Table:
 Program ID: 21
 Execution Stack:
 heapWrite(v1, readHeap(v1) * 10)
-(print(readHeap(v1)); release(cnt))
+(print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -259,8 +259,8 @@ Heap Table:
 -------------------------
 Program ID: 22
 Execution Stack:
-acquire(cnt)
-(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt))
+acquireSemaphore(cnt)
+(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -274,8 +274,8 @@ Heap Table:
 -------------------------
 Program ID: 20
 Execution Stack:
-acquire(cnt)
-(print(readHeap(v1) - 1); release(cnt))
+acquireSemaphore(cnt)
+(print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -289,7 +289,7 @@ Heap Table:
 -------------------------
 Program ID: 21
 Execution Stack:
-(print(readHeap(v1)); release(cnt))
+(print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -303,8 +303,8 @@ Heap Table:
 -------------------------
 Program ID: 22
 Execution Stack:
-acquire(cnt)
-(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt))
+acquireSemaphore(cnt)
+(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -318,8 +318,8 @@ Heap Table:
 -------------------------
 Program ID: 20
 Execution Stack:
-acquire(cnt)
-(print(readHeap(v1) - 1); release(cnt))
+acquireSemaphore(cnt)
+(print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -334,7 +334,7 @@ Heap Table:
 Program ID: 21
 Execution Stack:
 print(readHeap(v1))
-release(cnt)
+releaseSemaphore(cnt)
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -348,8 +348,8 @@ Heap Table:
 -------------------------
 Program ID: 22
 Execution Stack:
-acquire(cnt)
-(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt))
+acquireSemaphore(cnt)
+(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -363,8 +363,8 @@ Heap Table:
 -------------------------
 Program ID: 20
 Execution Stack:
-acquire(cnt)
-(print(readHeap(v1) - 1); release(cnt))
+acquireSemaphore(cnt)
+(print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -378,7 +378,7 @@ Heap Table:
 -------------------------
 Program ID: 21
 Execution Stack:
-release(cnt)
+releaseSemaphore(cnt)
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -392,8 +392,8 @@ Heap Table:
 -------------------------
 Program ID: 22
 Execution Stack:
-acquire(cnt)
-(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt))
+acquireSemaphore(cnt)
+(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -407,8 +407,8 @@ Heap Table:
 -------------------------
 Program ID: 20
 Execution Stack:
-acquire(cnt)
-(print(readHeap(v1) - 1); release(cnt))
+acquireSemaphore(cnt)
+(print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -436,8 +436,8 @@ Heap Table:
 -------------------------
 Program ID: 22
 Execution Stack:
-acquire(cnt)
-(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt))
+acquireSemaphore(cnt)
+(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -451,7 +451,7 @@ Heap Table:
 -------------------------
 Program ID: 20
 Execution Stack:
-(print(readHeap(v1) - 1); release(cnt))
+(print(readHeap(v1) - 1); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -465,8 +465,8 @@ Heap Table:
 -------------------------
 Program ID: 22
 Execution Stack:
-acquire(cnt)
-(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt))
+acquireSemaphore(cnt)
+(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -481,7 +481,7 @@ Heap Table:
 Program ID: 20
 Execution Stack:
 print(readHeap(v1) - 1)
-release(cnt)
+releaseSemaphore(cnt)
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -495,8 +495,8 @@ Heap Table:
 -------------------------
 Program ID: 22
 Execution Stack:
-acquire(cnt)
-(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt))
+acquireSemaphore(cnt)
+(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -510,7 +510,7 @@ Heap Table:
 -------------------------
 Program ID: 20
 Execution Stack:
-release(cnt)
+releaseSemaphore(cnt)
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -525,8 +525,8 @@ Heap Table:
 -------------------------
 Program ID: 22
 Execution Stack:
-acquire(cnt)
-(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt))
+acquireSemaphore(cnt)
+(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -556,7 +556,7 @@ Heap Table:
 -------------------------
 Program ID: 22
 Execution Stack:
-(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt))
+(heapWrite(v1, readHeap(v1) * 10); heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -572,7 +572,7 @@ Heap Table:
 Program ID: 22
 Execution Stack:
 heapWrite(v1, readHeap(v1) * 10)
-(heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt))
+(heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -587,7 +587,7 @@ Heap Table:
 -------------------------
 Program ID: 22
 Execution Stack:
-(heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); release(cnt))
+(heapWrite(v1, readHeap(v1) * 2); print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -603,7 +603,7 @@ Heap Table:
 Program ID: 22
 Execution Stack:
 heapWrite(v1, readHeap(v1) * 2)
-(print(readHeap(v1)); release(cnt))
+(print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -618,7 +618,7 @@ Heap Table:
 -------------------------
 Program ID: 22
 Execution Stack:
-(print(readHeap(v1)); release(cnt))
+(print(readHeap(v1)); releaseSemaphore(cnt))
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -634,7 +634,7 @@ Heap Table:
 Program ID: 22
 Execution Stack:
 print(readHeap(v1))
-release(cnt)
+releaseSemaphore(cnt)
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)
@@ -649,7 +649,7 @@ Heap Table:
 -------------------------
 Program ID: 22
 Execution Stack:
-release(cnt)
+releaseSemaphore(cnt)
 Symbols Table:
 cnt --> 1
 v1 --> (1, int)

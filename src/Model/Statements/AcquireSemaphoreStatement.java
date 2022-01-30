@@ -72,6 +72,6 @@ public class AcquireSemaphoreStatement implements IStatement {
 
     @Override
     public String toString() {
-        return String.format("acquire(%s)", variable_name);
+        return String.format("acquireSemaphore(%s)", variable_name);
     }
 }
